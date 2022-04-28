@@ -1,0 +1,24 @@
+int lightSensor=A5;
+int value;
+
+#define DELAY_TIME 30000
+
+void setup() 
+{
+    pinMode(lightSensor, INPUT);
+}
+
+void loop()
+{
+  int lightIntensity = digitalRead(lightSensor);
+  
+  if (lightIntensity < 500) Particle.publish("lightIntensity", "high", PRIVATE);
+  if (lightIntensity < 200) Particle.publish("lightIntensity", "medium", PRIVATE);
+  if (lightIntensity < 100) Particle.publish("lightIntensity", "low", PRIVATE);
+  if (lightIntensity < 50) Particle.publish("lightIntensity", "dark", PRIVATE);
+  
+  else Particle.publish("lightIntensity", "very high", PRIVATE);
+  
+  delay(DELAY_TIME);
+
+}
