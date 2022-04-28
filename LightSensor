@@ -12,10 +12,9 @@ void loop()
 {
   int lightIntensity = digitalRead(lightSensor);
   
-  if (lightIntensity < 500) Particle.publish("lightIntensity", "high", PRIVATE);
-  if (lightIntensity < 200) Particle.publish("lightIntensity", "medium", PRIVATE);
+  if (lightIntensity > 200 && lightIntensity < 500) Particle.publish("lightIntensity", "high",PRIVATE);
+  if (lightIntensity > 100 && lightIntensity < 200) Particle.publish("lightIntensity", "medium", PRIVATE);
   if (lightIntensity < 100) Particle.publish("lightIntensity", "low", PRIVATE);
-  if (lightIntensity < 50) Particle.publish("lightIntensity", "dark", PRIVATE);
   
   else Particle.publish("lightIntensity", "very high", PRIVATE);
   
